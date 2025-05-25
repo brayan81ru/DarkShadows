@@ -4,9 +4,11 @@
 #include <bgfx/bgfx.h>
 #include "DSString.h"
 #include "Debug.h"
+#include "math.h"
 
 using DSEngine::DSString;
 using DSEngine::Debug;
+
 
 namespace DSEngine {
     class Engine {
