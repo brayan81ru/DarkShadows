@@ -8,13 +8,16 @@
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
+#include "Quaternion.h"
+#include "Matrix4x4.h"
 
 using DSEngine::DSString;
 using DSEngine::Debug;
 using DSEngine::Vector2;
 using DSEngine::Vector3;
 using DSEngine::Vector4;
-
+using DSEngine::Quaternion;
+using DSEngine::Matrix4x4;
 
 namespace DSEngine {
     class Engine {
