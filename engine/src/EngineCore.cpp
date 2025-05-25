@@ -1,15 +1,33 @@
 #include "EngineCore.h"
 
-bool Engine::Init(int width, int height) {
+bool Engine::Init(const int width, const int height) {
+    // SDL Init
     SDL_Init(SDL_INIT_VIDEO);
-    m_window = SDL_CreateWindow("Diablo Clone", SDL_WINDOWPOS_CENTERED,
-                               SDL_WINDOWPOS_CENTERED, width, height, 0);
+    m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 
+    // BGFX Platform Data
     bgfx::PlatformData pd;
-    pd.nwh = SDL_GetWindowWMInfo(m_window)->info.win.window;
-    bgfx::init(pd);
+    SDL_SysWMinfo wmi;
+    SDL_VERSION(&wmi.version);
 
-    bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x303030ff);
+    if (!SDL_GetWindowWMInfo(m_window, &wmi)) {
+        SDL_LogCritical(SDL_LOG_CATEGORY_ERROR, "SDL_GetWindowWMInfo failed: %s", SDL_GetError());
+        return false;
+    }
+
+    #if defined(_WIN32)
+    pd.nwh = wmi.info.win.window;
+    #elif defined(__linux__)
+    pd.ndt = wmi.info.x11.display;
+    pd.nwh = (void*)(uintptr_t)wmi.info.x11.window;
+    #endif
+
+    bgfx::Init bgfxInit;
+    bgfxInit.platformData = pd;
+    bgfxInit.type = bgfx::RendererType::Vulkan;  // Or Direct3D11/OpenGL
+    bgfx::init(bgfxInit);
+
+    // Rest of initialization...
     return true;
 }
 
