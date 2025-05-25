@@ -5,6 +5,9 @@
 using DSEngine::Engine;
 
 int main() {
+
+    auto pepe = Vector2::zero;
+
     Debug::Log("Engine initialized.");
 
     if (Engine engine{}; engine.Init("Dark Shadows",1280, 720)) {

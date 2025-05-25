@@ -1,6 +1,7 @@
 #include "DSString.h"
 #include <cctype>
 #include <stdexcept>
+
 namespace DSEngine {
     // Private helper to reallocate memory
     void DSString::reallocate(size_t newCapacity) {

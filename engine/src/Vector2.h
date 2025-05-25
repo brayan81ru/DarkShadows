@@ -1,5 +1,6 @@
 #pragma once
 #include "math.h"
+
 namespace DSEngine {
 ALIGNED_(16) struct Vector2 {
     union {
@@ -51,7 +52,7 @@ ALIGNED_(16) struct Vector2 {
 
     // Functions
     FORCE_INLINE float Length() const { 
-        return Math::Sqrt(x*x + y*y); 
+        return Sqrt(x*x + y*y);
     }
     
     FORCE_INLINE float LengthSquared() const { 
