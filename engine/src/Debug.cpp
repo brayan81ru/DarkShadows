@@ -7,14 +7,26 @@ namespace DSEngine {
     void Debug::BaseLog(const char* message) {
         std::lock_guard<std::mutex> lock(s_logMutex);
         if(message) {
-            SetConsoleColor(ConsoleColor::Cyan);
             std::cout << message << std::endl;
         }
         ResetConsoleColor();
     }
 
     void Debug::Log(const DSString& message) {
+        SetConsoleColor(ConsoleColor::Cyan);
         BaseLog(message.c_str());
+    }
+
+    void Debug::LogError(const DSString& message) {
+        SetConsoleColor(ConsoleColor::Red);
+        const DSString messageStr = DSString::Format("[Error]: %D",message);
+        BaseLog(messageStr.c_str());
+    }
+
+    void Debug::LogWarning(const DSString& message) {
+        SetConsoleColor(ConsoleColor::Yellow);
+        const DSString messageStr = DSString::Format("[Warning]: %D",message);
+        BaseLog(messageStr.c_str());
     }
 
     void Debug::SetConsoleColor(ConsoleColor color) {

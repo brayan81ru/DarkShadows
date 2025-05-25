@@ -11,8 +11,14 @@
 #endif
 
 namespace DSEngine {
+    /**
+     * The Debug class is the responsible to show information on the output console.
+     */
     class Debug {
-        // Add this enum class above the Debug class
+
+        /**
+         * Colors used to change the console output message colors.
+         */
         enum class ConsoleColor {
             Reset = 0,
             Black = 30,
@@ -33,14 +39,36 @@ namespace DSEngine {
             BrightWhite
         };
 
-
     public:
+        /**
+         * Shows an information message on the output console.
+         *
+         * @param message The message text to show.
+         */
         static void Log(const DSString& message);
-        // Add these new methods to the Debug class
-        static void SetConsoleColor(ConsoleColor color);
-        static void ResetConsoleColor();
+
+        /**
+         * Shows an error message on the output console.
+         *
+         * @param message The message text to show.
+         */
+        static void LogError(const DSString& message);
+
+        /**
+         * Shows a warning message on the output console.
+         *
+         * @param message The message text to show.
+         */
+        static void LogWarning(const DSString& message);
+
     private:
         static std::mutex s_logMutex;
+
+        static void SetConsoleColor(ConsoleColor color);
+
+        static void ResetConsoleColor();
+
         static void BaseLog(const char* message);
+
     };
 }
