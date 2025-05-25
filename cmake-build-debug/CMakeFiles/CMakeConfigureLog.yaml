@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t234km"
-      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t234km"
+      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1p1yvy"
+      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1p1yvy"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -119,11 +119,11 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t234km'
+        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1p1yvy'
         
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_f176c
-        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_f176c.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_f176c.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_f176c.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_f176c.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_f176c.exe /implib:cmTC_f176c.lib /pdb:cmTC_f176c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_93fd4
+        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_93fd4.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_93fd4.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
+        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_93fd4.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_93fd4.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_93fd4.exe /implib:cmTC_93fd4.lib /pdb:cmTC_93fd4.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -163,8 +163,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wbsosa"
-      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wbsosa"
+      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ivydua"
+      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ivydua"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -174,11 +174,11 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wbsosa'
+        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ivydua'
         
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_49ba0
-        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_49ba0.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_49ba0.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_49ba0.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_49ba0.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_49ba0.exe /implib:cmTC_49ba0.lib /pdb:cmTC_49ba0.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_f993d
+        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_f993d.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_f993d.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.5\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_f993d.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_f993d.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_f993d.exe /implib:cmTC_f993d.lib /pdb:cmTC_f993d.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -209,10 +209,6 @@ events:
       Running the CXX compiler's linker: "C:/PROGRA~1/MICROS~2/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx64/x64/link.exe" "-v"
       Microsoft (R) Incremental Linker Version 14.43.34808.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
-...
-
----
-events:
   -
     kind: "try_compile-v1"
     backtrace:
@@ -224,8 +220,8 @@ events:
     checks:
       - "Performing Test flag_supported"
     directories:
-      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-yhtil9"
-      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-yhtil9"
+      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-y89l43"
+      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-y89l43"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -235,12 +231,12 @@ events:
       variable: "flag_supported"
       cached: true
       stdout: |
-        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-yhtil9'
+        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-y89l43'
         
-        Run Build Command(s): "C:/PROGRA~1/JETBRA~1/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_3fd28
-        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -Dflag_supported  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd   -Wno-implicit-fallthrough /showIncludes /FoCMakeFiles\\cmTC_3fd28.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_3fd28.dir\\ /FS -c D:\\Brayan\\Projects\\dark_shadows\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-yhtil9\\src.cxx
-        \x1b[31mFAILED: \x1b[0mCMakeFiles/cmTC_3fd28.dir/src.cxx.obj 
-        C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -Dflag_supported  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd   -Wno-implicit-fallthrough /showIncludes /FoCMakeFiles\\cmTC_3fd28.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_3fd28.dir\\ /FS -c D:\\Brayan\\Projects\\dark_shadows\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-yhtil9\\src.cxx
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_26fe7
+        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -Dflag_supported  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd   -Wno-implicit-fallthrough /showIncludes /FoCMakeFiles\\cmTC_26fe7.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_26fe7.dir\\ /FS -c D:\\Brayan\\Projects\\dark_shadows\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-y89l43\\src.cxx
+        FAILED: CMakeFiles/cmTC_26fe7.dir/src.cxx.obj 
+        C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -Dflag_supported  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd   -Wno-implicit-fallthrough /showIncludes /FoCMakeFiles\\cmTC_26fe7.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_26fe7.dir\\ /FS -c D:\\Brayan\\Projects\\dark_shadows\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-y89l43\\src.cxx
         cl : Línea de comandos error D8021 : argumento numérico no válido '/Wno-implicit-fallthrough'
         ninja: build stopped: subcommand failed.
         
