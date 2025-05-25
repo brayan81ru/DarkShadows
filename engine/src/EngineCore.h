@@ -7,6 +7,9 @@ class Engine {
 public:
     bool Init(int width, int height);
     void Run();
+    int GetWidth();
+    int GetHeight();
 private:
     SDL_Window* m_window;
+    int m_width, m_height;
 };

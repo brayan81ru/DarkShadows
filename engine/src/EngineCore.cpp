@@ -6,6 +6,10 @@ bool Engine::Init(const int width, const int height) {
 
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 
+    m_width = width;
+
+    m_height = height;
+
     // BGFX Platform Data
     bgfx::PlatformData pd;
 
@@ -42,6 +46,26 @@ void Engine::Run() {
             if (event.type == SDL_QUIT) running = false;
         }
 
+        // Set view 0 clear state.
+        bgfx::setViewClear(0
+            , BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH
+            , 0x303030ff
+            , 1.0f
+            , 0
+            );
+        // Set view 0 default viewport.
+        bgfx::setViewRect(0, 0, 0, uint16_t(m_width), uint16_t(m_height));
+
+        bgfx::touch(0);
+
         bgfx::frame();
     }
+}
+
+int Engine::GetWidth() {
+    return m_width;
+}
+
+int Engine::GetHeight() {
+    return m_height;
 }

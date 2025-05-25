@@ -1,6 +1,8 @@
 # Engine sources
 file(GLOB ENGINE_SOURCES src/*.cpp src/*.h)
-add_library(engine STATIC ${ENGINE_SOURCES})
+add_library(engine STATIC ${ENGINE_SOURCES}
+        src/GameObject.cpp
+        src/GameObject.h)
 
 #SDL2 configuration
 target_include_directories(engine PUBLIC ${SDL_INCLUDE_DIR})
@@ -19,9 +21,3 @@ target_link_libraries(engine PUBLIC )
 # BGFX (Vulkan backend)
 add_subdirectory(third_party/bgfx EXCLUDE_FROM_ALL)
 target_link_libraries(engine PUBLIC bgfx)
-
-# Flecs/EnTT (header-only)
-target_include_directories(engine PUBLIC
-        third_party/flecs
-        third_party/entt/src
-)

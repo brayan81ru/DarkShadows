@@ -1,0 +1,452 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "engine/third_party/bgfx/cmake/bgfx/texturev.exe"
+		},
+		{
+			"path" : "engine/third_party/bgfx/cmake/bgfx/texturev.pdb"
+		}
+	],
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"include",
+			"install",
+			"target_link_libraries",
+			"add_example"
+		],
+		"files" : 
+		[
+			"engine/third_party/bgfx/cmake/bgfx/texturev.cmake",
+			"engine/third_party/bgfx/cmake/bgfx/CMakeLists.txt",
+			"engine/third_party/bgfx/cmake/bgfx/examples.cmake",
+			"engine/third_party/bgfx/cmake/bx/bx.cmake",
+			"engine/third_party/bgfx/cmake/bx/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"file" : 0,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 22,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"file" : 2,
+				"parent" : 6
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 272,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 136,
+				"parent" : 8
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 4,
+				"line" : 11,
+				"parent" : 10
+			},
+			{
+				"file" : 3,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 99,
+				"parent" : 12
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "/Zc:__cplusplus"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "/Zc:preprocessor"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 5,
+					"define" : "BGFX_CONFIG_DEBUG_ANNOTATION=1"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "BGFX_CONFIG_MULTITHREADED=1"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "BX_CONFIG_DEBUG=1"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "__STDC_CONSTANT_MACROS"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "__STDC_FORMAT_MACROS"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "__STDC_LIMIT_MACROS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bgfx/examples/common"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bgfx/3rdparty"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bgfx/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bx/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bx/3rdparty"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bx/include/compat/msvc"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bimg/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					5
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				16
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 5,
+			"id" : "bx::@ad4789f41e3589f9aeee"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "bimg_decode::@49bf0a12594961087330"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "bimg::@49bf0a12594961087330"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "example-common::@312a68b8b81e287cd2a5"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "bgfx::@312a68b8b81e287cd2a5"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "bgfx/tools"
+	},
+	"id" : "texturev::@312a68b8b81e287cd2a5",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 4,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/DarkShadows"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "engine\\third_party\\bgfx\\cmake\\bgfx\\example-common.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "engine\\third_party\\bgfx\\cmake\\bgfx\\bgfx.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "engine\\third_party\\bgfx\\cmake\\bimg\\bimg.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "engine\\third_party\\bgfx\\cmake\\bimg\\bimg_decode.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "engine\\third_party\\bgfx\\cmake\\bx\\bx.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "psapi.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "texturev",
+	"nameOnDisk" : "texturev.exe",
+	"paths" : 
+	{
+		"build" : "engine/third_party/bgfx/cmake/bgfx",
+		"source" : "engine/third_party/bgfx/cmake/bgfx"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0,
+				2,
+				4,
+				6,
+				8,
+				10,
+				12,
+				14,
+				15,
+				17,
+				19,
+				21
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1,
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				18,
+				20
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				16
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/common.sh",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_3d.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_3d.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_array.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_array.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_cube.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_cube.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_cube2.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_cube2.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_msdf.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_msdf.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_sdf.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/fs_texture_sdf.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/makefile",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/texturev.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/varying.def.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/vs_texture.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/vs_texture.sc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/vs_texture_cube.bin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 3,
+			"path" : "engine/third_party/bgfx/bgfx/tools/texturev/vs_texture_cube.sc",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
