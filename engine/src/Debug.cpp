@@ -13,13 +13,13 @@ namespace DSEngine {
         ResetConsoleColor();
     }
 
-    void Debug::Log(DSString message) {
+    void Debug::Log(const DSString& message) {
         BaseLog(message.c_str());
     }
 
     void Debug::SetConsoleColor(ConsoleColor color) {
         #ifdef _WIN32
-        HANDLE hConsole = GetStdHandle((color >= ConsoleColor::BrightBlack) ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         WORD winColor = 0;
         switch (color) {
             case ConsoleColor::Black: winColor = 0; break;
