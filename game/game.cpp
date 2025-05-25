@@ -2,9 +2,14 @@
 #include "../engine/src/EngineCore.h"
 
 int main() {
-    Engine engine;
-    if (engine.Init(1280, 720)) {
+
+    const auto pepe = new dark_shadows_engine::GameObject();
+
+    pepe->m_name = "pepe";
+
+    if (Engine engine{}; engine.Init(1280, 720)) {
         engine.Run();
     }
+
     return 0;
 }

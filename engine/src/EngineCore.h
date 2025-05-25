@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <bgfx/bgfx.h>
+#include "GameObject.h"
 
 class Engine {
 public:

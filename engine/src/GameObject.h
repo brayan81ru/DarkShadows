@@ -4,11 +4,13 @@
 
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
+#include <string>
 
 namespace dark_shadows_engine {
 
 class GameObject {
-
+public:
+    std::string m_name;
 };
 
 } // dark_shadows_engine
