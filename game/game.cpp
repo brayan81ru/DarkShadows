@@ -5,11 +5,13 @@
 using DSEngine::Engine;
 
 int main() {
-    Debug::Log("Initializing engine...");
+    Debug::Log("Engine initialized.");
 
     if (Engine engine{}; engine.Init("Dark Shadows",1280, 720)) {
         engine.Run();
     }
+
+    Debug::Log("Engine execution finished.");
 
     return 0;
 }

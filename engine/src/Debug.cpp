@@ -1,132 +1,58 @@
+#pragma once
 #include "Debug.h"
-#include <iostream>
-namespace DSEnegine{
-// Static member initialization
-Debug::LogLevel Debug::s_minLevel = Debug::LogLevel::Info;
-std::ofstream Debug::s_logFile;
-bool Debug::s_consoleOutput = true;
-std::mutex Debug::s_logMutex;
-std::vector<void (*)(const DSString&, Debug::LogLevel)> Debug::s_callbacks;
-std::vector<DSString> Debug::s_allowedTags;
 
-void Debug::Log(const DSString& message) {
-    InternalLog(LogLevel::Info, message);
-}
+namespace DSEngine {
+    std::mutex Debug::s_logMutex;
 
-void Debug::LogWarning(const DSString& message) {
-    InternalLog(LogLevel::Warning, message);
-}
-
-void Debug::LogError(const DSString& message) {
-    InternalLog(LogLevel::Error, message);
-}
-
-void Debug::LogWithTag(const DSString& tag, const DSString& message) {
-    if (!s_allowedTags.empty()) {
-        bool tagAllowed = false;
-        for (const auto& allowedTag : s_allowedTags) {
-            if (allowedTag == tag) {
-                tagAllowed = true;
-                break;
-            }
+    void Debug::BaseLog(const char* message) {
+        std::lock_guard<std::mutex> lock(s_logMutex);
+        if(message) {
+            SetConsoleColor(ConsoleColor::Cyan);
+            std::cout << message << std::endl;
         }
-        if (!tagAllowed) return;
+        ResetConsoleColor();
     }
-    
-    InternalLog(LogLevel::Info, DSString::Format("[%D] %D", &tag, &message));
-}
 
-void Debug::SetMinimumLogLevel(LogLevel level) {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    s_minLevel = level;
-}
-
-void Debug::EnableFileOutput(const DSString& filePath) {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    if (s_logFile.is_open()) {
-        s_logFile.close();
+    void Debug::Log(const DSString& message) {
+        BaseLog(message.c_str());
     }
-    s_logFile.open(filePath.c_str(), std::ios::out | std::ios::app);
-}
 
-void Debug::DisableFileOutput() {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    if (s_logFile.is_open()) {
-        s_logFile.close();
+    void Debug::SetConsoleColor(ConsoleColor color) {
+        #ifdef _WIN32
+        HANDLE hConsole = GetStdHandle((color >= ConsoleColor::BrightBlack) ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);
+        WORD winColor = 0;
+        switch (color) {
+            case ConsoleColor::Black: winColor = 0; break;
+            case ConsoleColor::Red: winColor = FOREGROUND_RED; break;
+            case ConsoleColor::Green: winColor = FOREGROUND_GREEN; break;
+            case ConsoleColor::Yellow: winColor = FOREGROUND_RED | FOREGROUND_GREEN; break;
+            case ConsoleColor::Blue: winColor = FOREGROUND_BLUE; break;
+            case ConsoleColor::Magenta: winColor = FOREGROUND_RED | FOREGROUND_BLUE; break;
+            case ConsoleColor::Cyan: winColor = FOREGROUND_GREEN | FOREGROUND_BLUE; break;
+            case ConsoleColor::White: winColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE; break;
+            case ConsoleColor::BrightBlack: winColor = 0 | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightRed: winColor = FOREGROUND_RED | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightGreen: winColor = FOREGROUND_GREEN | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightYellow: winColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightBlue: winColor = FOREGROUND_BLUE | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightMagenta: winColor = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightCyan: winColor = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY; break;
+            case ConsoleColor::BrightWhite: winColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY; break;
+            default: winColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE; break;
+        }
+        SetConsoleTextAttribute(hConsole, winColor);
+        #else
+        std::ostream& stream = (color >= ConsoleColor::BrightBlack) ? std::cout : std::cerr;
+        stream << "\033[" << static_cast<int>(color) << "m";
+        #endif
     }
-}
 
-void Debug::EnableConsoleOutput(bool enable) {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    s_consoleOutput = enable;
-}
-
-void Debug::AddCustomOutput(void (*callback)(const DSString&, LogLevel)) {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    s_callbacks.push_back(callback);
-}
-
-void Debug::ClearCustomOutputs() {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    s_callbacks.clear();
-}
-
-void Debug::AddAllowedTag(const DSString& tag) {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    s_allowedTags.push_back(tag);
-}
-
-void Debug::ClearAllowedTags() {
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    s_allowedTags.clear();
-}
-
-// Private implementation
-void Debug::InternalLog(LogLevel level, const DSString& message) {
-    if (level < s_minLevel) return;
-    
-    std::lock_guard<std::mutex> lock(s_logMutex);
-    DSString formatted = FormatLogMessage(level, message);
-    
-    if (s_consoleOutput) {
-        std::ostream& stream = (level == LogLevel::Error) ? std::cerr : std::cout;
-        stream << formatted.c_str() << std::endl;
+    void Debug::ResetConsoleColor() {
+        #ifdef _WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        #else
+        std::cout << "\033[0m";
+        #endif
     }
-    
-    if (s_logFile.is_open()) {
-        s_logFile << formatted.c_str() << std::endl;
-        s_logFile.flush();
-    }
-    
-    for (auto callback : s_callbacks) {
-        callback(formatted, level);
-    }
-}
-
-DSString Debug::FormatLogMessage(LogLevel level, const DSString& message) {
-    const char* levelStr = "";
-    switch (level) {
-        case LogLevel::Info: levelStr = "INFO"; break;
-        case LogLevel::Warning: levelStr = "WARN"; break;
-        case LogLevel::Error: levelStr = "ERROR"; break;
-    }
-    
-    return DSString::Format("[%s][%D] %D", levelStr, &GetCurrentTimeStamp(), &message);
-}
-
-DSString Debug::GetCurrentTimeStamp() {
-    auto now = std::chrono::system_clock::now();
-    auto in_time_t = std::chrono::system_clock::to_time_t(now);
-    
-    struct tm timeInfo;
-    localtime_s(&timeInfo, &in_time_t);
-    
-    auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
-        now.time_since_epoch()) % 1000;
-    
-    char buffer[32];
-    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeInfo);
-    
-    return DSString::Format("%s.%03d", buffer, static_cast<int>(milliseconds.count()));
-}
 }
