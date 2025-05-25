@@ -3,11 +3,14 @@
 bool Engine::Init(const int width, const int height) {
     // SDL Init
     SDL_Init(SDL_INIT_VIDEO);
+
     m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 
     // BGFX Platform Data
     bgfx::PlatformData pd;
+
     SDL_SysWMinfo wmi;
+
     SDL_VERSION(&wmi.version);
 
     if (!SDL_GetWindowWMInfo(m_window, &wmi)) {

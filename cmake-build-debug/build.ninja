@@ -9942,10 +9942,10 @@ build game\CMakeFiles\dark_shadows.dir\game.cpp.obj: CXX_COMPILER__dark_shadows_
 #############################################
 # Link the executable game\dark_shadows.exe
 
-build game\dark_shadows.exe: CXX_EXECUTABLE_LINKER__dark_shadows_Debug game\CMakeFiles\dark_shadows.dir\game.cpp.obj | engine\engine.lib D$:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\lib\x64\SDL2.lib engine\third_party\bgfx\cmake\bgfx\bgfx.lib engine\third_party\bgfx\cmake\bimg\bimg.lib engine\third_party\bgfx\cmake\bx\bx.lib || engine\engine.lib engine\third_party\bgfx\cmake\bgfx\bgfx.lib engine\third_party\bgfx\cmake\bimg\bimg.lib engine\third_party\bgfx\cmake\bx\bx.lib
+build game\dark_shadows.exe: CXX_EXECUTABLE_LINKER__dark_shadows_Debug game\CMakeFiles\dark_shadows.dir\game.cpp.obj | engine\engine.lib D$:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\lib\x64\SDL2main.lib D$:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\lib\x64\SDL2.lib engine\third_party\bgfx\cmake\bgfx\bgfx.lib engine\third_party\bgfx\cmake\bimg\bimg.lib engine\third_party\bgfx\cmake\bx\bx.lib || engine\engine.lib engine\third_party\bgfx\cmake\bgfx\bgfx.lib engine\third_party\bgfx\cmake\bimg\bimg.lib engine\third_party\bgfx\cmake\bx\bx.lib
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = engine\engine.lib  D:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\lib\x64\SDL2.lib  engine\third_party\bgfx\cmake\bgfx\bgfx.lib  engine\third_party\bgfx\cmake\bimg\bimg.lib  engine\third_party\bgfx\cmake\bx\bx.lib  psapi.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = engine\engine.lib  D:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\lib\x64\SDL2main.lib  D:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\lib\x64\SDL2.lib  engine\third_party\bgfx\cmake\bgfx\bgfx.lib  engine\third_party\bgfx\cmake\bimg\bimg.lib  engine\third_party\bgfx\cmake\bx\bx.lib  psapi.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   LINK_PATH = -LIBPATH:\lib\x64
   OBJECT_DIR = game\CMakeFiles\dark_shadows.dir
   POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D D:\Brayan\Projects\dark_shadows\cmake-build-debug\game && "C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E copy D:/Brayan/Projects/dark_shadows/engine/third_party/SDL2-2.32.6/lib/x64/SDL2.dll D:/Brayan/Projects/dark_shadows/cmake-build-debug/game"
