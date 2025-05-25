@@ -3,10 +3,16 @@
 #include <SDL_syswm.h>
 #include <bgfx/bgfx.h>
 #include "DSString.h"
+#include "Debug.h"
+
+using DSEngine::DSString;
+using DSEngine::Debug;
 
 namespace DSEngine {
     class Engine {
+
     public:
+
         bool Init(DSString title, int width, int height);
         void Run();
         int GetWidth();
