@@ -5,10 +5,11 @@
 #include "DSString.h"
 #include "Debug.h"
 #include "math.h"
+#include "Vector2.h"
 
 using DSEngine::DSString;
 using DSEngine::Debug;
-
+using DSEngine::Vector2;
 
 namespace DSEngine {
     class Engine {

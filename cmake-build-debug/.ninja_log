@@ -188,3 +188,7 @@
 13	431	7699005152021605	engine/CMakeFiles/engine.dir/src/Debug.cpp.obj	4ed570ed0683ef28
 431	452	7699005156201593	engine/engine.lib	ee28c5bcc34136cd
 452	545	7699005156411598	game/dark_shadows.exe	86895f8814f22b85
+14	399	7699006574768624	game/CMakeFiles/dark_shadows.dir/game.cpp.obj	d650121523eef9dc
+12	400	7699006574748589	engine/CMakeFiles/engine.dir/src/EngineCore.cpp.obj	33b2448a81e53bab
+400	422	7699006578629491	engine/engine.lib	ee28c5bcc34136cd
+422	521	7699006578849491	game/dark_shadows.exe	86895f8814f22b85
