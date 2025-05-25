@@ -14,6 +14,117 @@
 # EXTERNAL cache entries
 ########################
 
+//Amalgamated bgfx build for faster compilation
+BGFX_AMALGAMATED:BOOL=OFF
+
+//Build bgfx examples.
+BGFX_BUILD_EXAMPLES:BOOL=ON
+
+//Build bgfx tests.
+BGFX_BUILD_TESTS:BOOL=OFF
+
+//Build bgfx tools.
+BGFX_BUILD_TOOLS:BOOL=ON
+
+//Build bx binary to c converter.
+BGFX_BUILD_TOOLS_BIN2C:BOOL=ON
+
+//Build bgfx geometry tools.
+BGFX_BUILD_TOOLS_GEOMETRY:BOOL=ON
+
+//Build bgfx shader tools.
+BGFX_BUILD_TOOLS_SHADER:BOOL=ON
+
+//Build bgfx texture tools.
+BGFX_BUILD_TOOLS_TEXTURE:BOOL=ON
+
+//Path to custom cmake script to include
+BGFX_CMAKE_USER_SCRIPT:STRING=
+
+//Enable gfx debug annotations (default: on in debug)
+BGFX_CONFIG_DEBUG_ANNOTATION:BOOL=OFF
+
+//Specify default maximum encoder count (multithreaded only)
+BGFX_CONFIG_DEFAULT_MAX_ENCODERS:STRING=
+
+//Specify maximum draw calls
+BGFX_CONFIG_MAX_DRAW_CALLS:STRING=
+
+//Specify maximum dynamic index buffer count
+BGFX_CONFIG_MAX_DYNAMIC_INDEX_BUFFERS:STRING=
+
+//Specify maximum dynamic vertex buffer count
+BGFX_CONFIG_MAX_DYNAMIC_VERTEX_BUFFERS:STRING=
+
+//Specify maximum frame buffers
+BGFX_CONFIG_MAX_FRAME_BUFFERS:STRING=
+
+//Specify maximum index buffer count
+BGFX_CONFIG_MAX_INDEX_BUFFERS:STRING=
+
+//Specify shader count
+BGFX_CONFIG_MAX_SHADERS:STRING=
+
+//Specify maximum texture count
+BGFX_CONFIG_MAX_TEXTURES:STRING=
+
+//Specify maximum texture samplers
+BGFX_CONFIG_MAX_TEXTURE_SAMPLERS:STRING=
+
+//Specify maximum vertex buffer count
+BGFX_CONFIG_MAX_VERTEX_BUFFERS:STRING=
+
+//Specify maximum vertex layouts
+BGFX_CONFIG_MAX_VERTEX_LAYOUTS:STRING=
+
+//Specify maximum view count (should be a power of two)
+BGFX_CONFIG_MAX_VIEWS:STRING=
+
+//Build bgfx with multithreaded configuration
+BGFX_CONFIG_MULTITHREADED:BOOL=ON
+
+//Enable the webgpu renderer
+BGFX_CONFIG_RENDERER_WEBGPU:BOOL=OFF
+
+//Specify maximum program count as 2^(program bits)
+BGFX_CONFIG_SORT_KEY_NUM_BITS_PROGRAM:STRING=
+
+//Include convenience custom targets.
+BGFX_CUSTOM_TARGETS:BOOL=ON
+
+//Location of bgfx.
+BGFX_DIR:STRING=D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bgfx
+
+//Create installation target.
+BGFX_INSTALL:BOOL=ON
+
+//Install examples and their runtimes.
+BGFX_INSTALL_EXAMPLES:BOOL=OFF
+
+//Linking type for library
+BGFX_LIBRARY_TYPE:STRING=STATIC
+
+//Specify minimum OpenGL ES version
+BGFX_OPENGLES_VERSION:STRING=
+
+//Specify minimum opengl version
+BGFX_OPENGL_VERSION:STRING=
+
+//Prefix name to add to name of tools (to avoid clashes)
+BGFX_TOOLS_PREFIX:STRING=
+
+//Location of bimg.
+BIMG_DIR:STRING=D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bimg
+
+//Amalgamated bx build for faster compilation
+BX_AMALGAMATED:BOOL=OFF
+
+//Log debug messages (default: on in debug)
+BX_CONFIG_DEBUG:BOOL=OFF
+
+//Location of bx.
+BX_DIR:STRING=D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx/bx
+
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/lib.exe
 
@@ -87,14 +198,62 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/pkgRedirects
 
+//User executables (bin)
+CMAKE_INSTALL_BINDIR:PATH=bin
+
+//Read-only architecture-independent data (DATAROOTDIR)
+CMAKE_INSTALL_DATADIR:PATH=
+
+//Read-only architecture-independent data root (share)
+CMAKE_INSTALL_DATAROOTDIR:PATH=share
+
+//Documentation root (DATAROOTDIR/doc/PROJECT_NAME)
+CMAKE_INSTALL_DOCDIR:PATH=
+
+//C header files (include)
+CMAKE_INSTALL_INCLUDEDIR:PATH=include
+
+//Info documentation (DATAROOTDIR/info)
+CMAKE_INSTALL_INFODIR:PATH=
+
+//Object code libraries (lib)
+CMAKE_INSTALL_LIBDIR:PATH=lib
+
+//Program executables (libexec)
+CMAKE_INSTALL_LIBEXECDIR:PATH=libexec
+
+//Locale-dependent data (DATAROOTDIR/locale)
+CMAKE_INSTALL_LOCALEDIR:PATH=
+
+//Modifiable single-machine data (var)
+CMAKE_INSTALL_LOCALSTATEDIR:PATH=var
+
+//Man documentation (DATAROOTDIR/man)
+CMAKE_INSTALL_MANDIR:PATH=
+
+//C header files for non-gcc (/usr/include)
+CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
+
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/DarkShadows
+
+//Run-time variable data (LOCALSTATEDIR/run)
+CMAKE_INSTALL_RUNSTATEDIR:PATH=
+
+//System admin executables (sbin)
+CMAKE_INSTALL_SBINDIR:PATH=sbin
+
+//Modifiable architecture-independent data (com)
+CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
+
+//Read-only single-machine data (etc)
+CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/link.exe
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/PROGRA~1/JETBRA~1/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -208,14 +367,46 @@ DarkShadows_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 DarkShadows_SOURCE_DIR:STATIC=D:/Brayan/Projects/dark_shadows
 
+//Git command line client
+GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
 //The directory containing a CMake configuration file for SDL2.
 SDL2_DIR:PATH=D:/Brayan/Projects/2dengine/libs/SDL2/cmake
+
+//Value Computed by CMake
+bgfx_BINARY_DIR:STATIC=D:/Brayan/Projects/dark_shadows/cmake-build-debug/engine/third_party/bgfx
+
+//Value Computed by CMake
+bgfx_IS_TOP_LEVEL:STATIC=OFF
+
+//Dependencies for the target
+bgfx_LIB_DEPENDS:STATIC=general;bx;general;bimg;
+
+//Value Computed by CMake
+bgfx_SOURCE_DIR:STATIC=D:/Brayan/Projects/dark_shadows/engine/third_party/bgfx
+
+//Dependencies for the target
+bimg_LIB_DEPENDS:STATIC=general;bx;
+
+//Dependencies for the target
+bimg_decode_LIB_DEPENDS:STATIC=general;bx;
+
+//Dependencies for the target
+bimg_encode_LIB_DEPENDS:STATIC=general;bx;
+
+//Dependencies for the target
+bx_LIB_DEPENDS:STATIC=general;psapi;
+
+//Dependencies for the target
+example-common_LIB_DEPENDS:STATIC=general;bgfx;general;bx;general;bimg;general;bimg_decode;
 
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//STRINGS property for variable: BGFX_LIBRARY_TYPE
+BGFX_LIBRARY_TYPE-STRINGS:INTERNAL=STATIC;SHARED
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -287,6 +478,38 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=D:/Brayan/Projects/dark_shadows
+//ADVANCED property for variable: CMAKE_INSTALL_BINDIR
+CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATADIR
+CMAKE_INSTALL_DATADIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATAROOTDIR
+CMAKE_INSTALL_DATAROOTDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DOCDIR
+CMAKE_INSTALL_DOCDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INCLUDEDIR
+CMAKE_INSTALL_INCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INFODIR
+CMAKE_INSTALL_INFODIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBDIR
+CMAKE_INSTALL_LIBDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBEXECDIR
+CMAKE_INSTALL_LIBEXECDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALEDIR
+CMAKE_INSTALL_LOCALEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALSTATEDIR
+CMAKE_INSTALL_LOCALSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_MANDIR
+CMAKE_INSTALL_MANDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_OLDINCLUDEDIR
+CMAKE_INSTALL_OLDINCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_RUNSTATEDIR
+CMAKE_INSTALL_RUNSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SBINDIR
+CMAKE_INSTALL_SBINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SHAREDSTATEDIR
+CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
+CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS
@@ -302,7 +525,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -348,4 +571,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: GIT_EXECUTABLE
+GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//CMAKE_INSTALL_PREFIX during last run
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/DarkShadows
+//Test flag_supported
+flag_supported:INTERNAL=
 

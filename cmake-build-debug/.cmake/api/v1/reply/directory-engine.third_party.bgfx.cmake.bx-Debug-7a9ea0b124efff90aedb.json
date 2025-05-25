@@ -1,0 +1,145 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"include"
+		],
+		"files" : 
+		[
+			"engine/third_party/bgfx/cmake/bx/bx.cmake",
+			"engine/third_party/bgfx/cmake/bx/CMakeLists.txt",
+			"engine/third_party/bgfx/cmake/bx/bin2c.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"file" : 0,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 125,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 133,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 134,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 137,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"file" : 2,
+				"parent" : 7
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 39,
+				"parent" : 8
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bx/bx.lib"
+			],
+			"targetId" : "bx::@ad4789f41e3589f9aeee",
+			"targetIndex" : 5,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/bx/include/bx"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "include/bx/compat",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/bx/include/compat/msvc"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "Unspecified",
+			"destination" : "include/bx",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/bx/include/tinystl"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 9,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bx/bin2c.exe"
+			],
+			"targetId" : "bin2c::@ad4789f41e3589f9aeee",
+			"targetIndex" : 4,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 9,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "bin2c::@ad4789f41e3589f9aeee",
+				"index" : 4
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "engine/third_party/bgfx/cmake/bx",
+		"source" : "engine/third_party/bgfx/cmake/bx"
+	}
+}

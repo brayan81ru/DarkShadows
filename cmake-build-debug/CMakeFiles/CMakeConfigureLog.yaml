@@ -210,3 +210,39 @@ events:
       Microsoft (R) Incremental Linker Version 14.43.34808.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/JetBrains/CLion 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/Program Files/JetBrains/CLion 2024.3.5/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "engine/third_party/bgfx/cmake/bimg/bimg_encode.cmake:71 (check_cxx_compiler_flag)"
+      - "engine/third_party/bgfx/cmake/bimg/CMakeLists.txt:24 (include)"
+    checks:
+      - "Performing Test flag_supported"
+    directories:
+      source: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-yhtil9"
+      binary: "D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-yhtil9"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "flag_supported"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-yhtil9'
+        
+        Run Build Command(s): "C:/PROGRA~1/JETBRA~1/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe" -v cmTC_3fd28
+        [1/2] C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -Dflag_supported  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd   -Wno-implicit-fallthrough /showIncludes /FoCMakeFiles\\cmTC_3fd28.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_3fd28.dir\\ /FS -c D:\\Brayan\\Projects\\dark_shadows\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-yhtil9\\src.cxx
+        \x1b[31mFAILED: \x1b[0mCMakeFiles/cmTC_3fd28.dir/src.cxx.obj 
+        C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -Dflag_supported  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd   -Wno-implicit-fallthrough /showIncludes /FoCMakeFiles\\cmTC_3fd28.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_3fd28.dir\\ /FS -c D:\\Brayan\\Projects\\dark_shadows\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-yhtil9\\src.cxx
+        cl : Línea de comandos error D8021 : argumento numérico no válido '/Wno-implicit-fallthrough'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...

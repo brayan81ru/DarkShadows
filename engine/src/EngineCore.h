@@ -1,6 +1,7 @@
 #pragma once
-
 #include <SDL.h>
+#include <SDL_syswm.h>
+#include <bgfx/bgfx.h>
 
 class Engine {
 public:

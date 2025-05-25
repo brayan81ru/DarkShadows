@@ -1,0 +1,250 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"include"
+		],
+		"files" : 
+		[
+			"engine/third_party/bgfx/cmake/bgfx/bgfx.cmake",
+			"engine/third_party/bgfx/cmake/bgfx/CMakeLists.txt",
+			"engine/third_party/bgfx/cmake/bgfx/texturev.cmake",
+			"engine/third_party/bgfx/cmake/bgfx/geometryc.cmake",
+			"engine/third_party/bgfx/cmake/bgfx/geometryv.cmake",
+			"engine/third_party/bgfx/cmake/bgfx/shaderc.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"file" : 0,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 216,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 226,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 229,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"file" : 2,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 41,
+				"parent" : 7
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 9
+			},
+			{
+				"command" : 0,
+				"file" : 3,
+				"line" : 42,
+				"parent" : 10
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"file" : 4,
+				"parent" : 12
+			},
+			{
+				"command" : 0,
+				"file" : 4,
+				"line" : 41,
+				"parent" : 13
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 29,
+				"parent" : 0
+			},
+			{
+				"file" : 5,
+				"parent" : 15
+			},
+			{
+				"command" : 0,
+				"file" : 5,
+				"line" : 67,
+				"parent" : 16
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bgfx/bgfx.lib"
+			],
+			"targetId" : "bgfx::@312a68b8b81e287cd2a5",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/bgfx/include/bgfx"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "include/bgfx",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/bgfx/src/bgfx_shader.sh",
+				"engine/third_party/bgfx/bgfx/src/bgfx_compute.sh"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bgfx/texturev.exe"
+			],
+			"targetId" : "texturev::@312a68b8b81e287cd2a5",
+			"targetIndex" : 64,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "texturev::@312a68b8b81e287cd2a5",
+				"index" : 64
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 11,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bgfx/geometryc.exe"
+			],
+			"targetId" : "geometryc::@312a68b8b81e287cd2a5",
+			"targetIndex" : 56,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 11,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "geometryc::@312a68b8b81e287cd2a5",
+				"index" : 56
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 14,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bgfx/geometryv.exe"
+			],
+			"targetId" : "geometryv::@312a68b8b81e287cd2a5",
+			"targetIndex" : 57,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 14,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "geometryv::@312a68b8b81e287cd2a5",
+				"index" : 57
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 17,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"engine/third_party/bgfx/cmake/bgfx/shaderc.exe"
+			],
+			"targetId" : "shaderc::@312a68b8b81e287cd2a5",
+			"targetIndex" : 60,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 17,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "shaderc::@312a68b8b81e287cd2a5",
+				"index" : 60
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "engine/third_party/bgfx/cmake/bgfx",
+		"source" : "engine/third_party/bgfx/cmake/bgfx"
+	}
+}
