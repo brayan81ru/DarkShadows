@@ -1,15 +1,18 @@
 #include "EngineCore.h"
 
 namespace DSEngine {
-    bool Engine::Init(const int width, const int height) {
+    bool Engine::Init(DSString title, int width, int height) {
         // SDL Init
         SDL_Init(SDL_INIT_VIDEO);
 
-        m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
+        m_title = title;
 
         m_width = width;
 
         m_height = height;
+
+        m_window = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, SDL_WINDOW_SHOWN);
+
 
         // BGFX Platform Data
         bgfx::PlatformData pd;

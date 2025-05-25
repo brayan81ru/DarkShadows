@@ -5,8 +5,11 @@
 using DSEngine::Engine;
 
 int main() {
+    const DSEngine::DSString pepe = "pepe";
 
-    if (Engine engine{}; engine.Init(1280, 720)) {
+    auto len = pepe.Length();
+
+    if (Engine engine{}; engine.Init("Codename - Dark Shadows",1280, 720)) {
         engine.Run();
     }
     return 0;
