@@ -1,0 +1,8 @@
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/engine/CMakeFiles/engine.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/engine/CMakeFiles/edit_cache.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/engine/CMakeFiles/rebuild_cache.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/game/CMakeFiles/dark_shadows.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/game/CMakeFiles/edit_cache.dir
+D:/Brayan/Projects/dark_shadows/cmake-build-debug/game/CMakeFiles/rebuild_cache.dir

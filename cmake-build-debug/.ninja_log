@@ -1,0 +1,7 @@
+# ninja log v6
+1	42	7698729809213784	build.ninja	a1ded9211e65ef81
+72	90	7698717997099942	engine/engine.lib	b4bf6ca02a0aebf0
+2	71	7698717996399674	engine/CMakeFiles/engine.dir/src/EngineCore.cpp.obj	dc7e774149753deb
+1	70	7698715573826841	game/CMakeFiles/dark_shadows.dir/game.cpp.obj	661030e467fb0631
+1	65	7698726621736449	game/dark_shadows.exe	a5afdfbacef90dbb
+0	41	7698729809213784	build.ninja	a1ded9211e65ef81
