@@ -208,23 +208,89 @@ namespace DSEngine {
     }
 
     // Formatting
+    // In DSString.cpp replace the Format implementation with:
     DSString DSString::Format(const char* format, ...) {
         if (!format) return DSString();
 
-        // Determine required size
         va_list args;
         va_start(args, format);
-        int size = vsnprintf(nullptr, 0, format, args) + 1; // +1 for null terminator
+
+        // First pass: calculate required size
+        int size = 0;
+        const char* p = format;
+        va_list argsCopy;
+        va_copy(argsCopy, args);
+
+        while (*p != '\0') {
+            if (*p == '%') {
+                p++;
+                if (*p == 'D') {
+                    // Handle DSString argument
+                    const DSString* dsStr = va_arg(argsCopy, const DSString*);
+                    size += (dsStr ? dsStr->Length() : 0);
+                    p++;
+                } else {
+                    // Handle standard format specifiers
+                    char buff[32];
+                    size += vsnprintf(buff, sizeof(buff), p, argsCopy);
+                    while (*p != '\0' && !isalpha(*p)) p++; // Skip to end of specifier
+                }
+            } else {
+                size++;
+                p++;
+            }
+        }
+        va_end(argsCopy);
+
+        if (size <= 0) {
+            va_end(args);
+            return DSString();
+        }
+
+        // Second pass: actual formatting
+        DSString result;
+        result.reallocate(size); // Pre-allocate space
+
+        p = format;
+        char* out = result.m_data;
+
+        while (*p != '\0') {
+            if (*p == '%') {
+                p++;
+                if (*p == 'D') {
+                    // Handle DSString argument
+                    const DSString* dsStr = va_arg(args, const DSString*);
+                    if (dsStr) {
+                        size_t len = dsStr->Length();
+                        std::memcpy(out, dsStr->c_str(), len);
+                        out += len;
+                    }
+                    p++;
+                } else {
+                    // Handle standard format specifiers
+                    char specifier[32];
+                    char* s = specifier;
+                    *s++ = '%';
+
+                    // Reconstruct the format specifier
+                    while (*p != '\0' && !isalpha(*p)) {
+                        *s++ = *p++;
+                    }
+                    if (*p != '\0') {
+                        *s++ = *p++;
+                    }
+                    *s = '\0';
+
+                    out += vsprintf(out, specifier, args);
+                }
+            } else {
+                *out++ = *p++;
+            }
+        }
+        *out = '\0';
+        result.m_length = out - result.m_data;
+
         va_end(args);
-
-        if (size <= 0) return DSString();
-
-        // Create buffer and format
-        std::vector<char> buffer(size);
-        va_start(args, format);
-        vsnprintf(buffer.data(), size, format, args);
-        va_end(args);
-
-        return DSString(buffer.data());
+        return result;
     }
 }
