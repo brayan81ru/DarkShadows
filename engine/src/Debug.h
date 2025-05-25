@@ -35,7 +35,7 @@ namespace DSEngine {
 
 
     public:
-        static void Log(const DSString& message);
+        static void Log(DSString message);
         // Add these new methods to the Debug class
         static void SetConsoleColor(ConsoleColor color);
         static void ResetConsoleColor();

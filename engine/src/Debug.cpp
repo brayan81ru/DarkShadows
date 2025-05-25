@@ -13,7 +13,7 @@ namespace DSEngine {
         ResetConsoleColor();
     }
 
-    void Debug::Log(const DSString& message) {
+    void Debug::Log(DSString message) {
         BaseLog(message.c_str());
     }
 
