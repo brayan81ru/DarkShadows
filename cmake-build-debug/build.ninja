@@ -116,15 +116,6 @@ build engine\CMakeFiles\engine.dir\src\EngineCore.cpp.obj: CXX_COMPILER__engine_
   TARGET_COMPILE_PDB = engine\CMakeFiles\engine.dir\engine.pdb
   TARGET_PDB = engine\engine.pdb
 
-build engine\CMakeFiles\engine.dir\src\GameObject.cpp.obj: CXX_COMPILER__engine_unscanned_Debug D$:\Brayan\Projects\dark_shadows\engine\src\GameObject.cpp || cmake_object_order_depends_target_engine
-  DEFINES = -DBGFX_CONFIG_DEBUG_ANNOTATION=1 -DBGFX_CONFIG_MULTITHREADED=1 -DBX_CONFIG_DEBUG=1
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -I\include -ID:\Brayan\Projects\dark_shadows\engine\third_party\bgfx\bgfx\include -external:ID:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\include -external:W0
-  OBJECT_DIR = engine\CMakeFiles\engine.dir
-  OBJECT_FILE_DIR = engine\CMakeFiles\engine.dir\src
-  TARGET_COMPILE_PDB = engine\CMakeFiles\engine.dir\engine.pdb
-  TARGET_PDB = engine\engine.pdb
-
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target engine
@@ -133,7 +124,7 @@ build engine\CMakeFiles\engine.dir\src\GameObject.cpp.obj: CXX_COMPILER__engine_
 #############################################
 # Link the static library engine\engine.lib
 
-build engine\engine.lib: CXX_STATIC_LIBRARY_LINKER__engine_Debug engine\CMakeFiles\engine.dir\src\EngineCore.cpp.obj engine\CMakeFiles\engine.dir\src\GameObject.cpp.obj || engine\third_party\bgfx\cmake\bgfx\bgfx.lib engine\third_party\bgfx\cmake\bimg\bimg.lib engine\third_party\bgfx\cmake\bx\bx.lib
+build engine\engine.lib: CXX_STATIC_LIBRARY_LINKER__engine_Debug engine\CMakeFiles\engine.dir\src\EngineCore.cpp.obj || engine\third_party\bgfx\cmake\bgfx\bgfx.lib engine\third_party\bgfx\cmake\bimg\bimg.lib engine\third_party\bgfx\cmake\bx\bx.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = engine\CMakeFiles\engine.dir
