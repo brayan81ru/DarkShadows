@@ -6,7 +6,10 @@ using DSEngine::Engine;
 
 int main() {
 
+    float a = Mathf::Sqrt(12.0f);
     auto pepe = Vector2::zero;
+    auto vector3 = Vector3::zero;
+
 
     Debug::Log("Engine initialized.");
 
