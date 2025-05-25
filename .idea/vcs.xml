@@ -3,5 +3,10 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/engine/third_party/bgfx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/engine/third_party/bgfx/bgfx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/engine/third_party/bgfx/bimg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/engine/third_party/bgfx/bx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/engine/third_party/entt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/engine/third_party/flecs" vcs="Git" />
   </component>
 </project>

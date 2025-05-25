@@ -110,7 +110,7 @@ build cmake_object_order_depends_target_engine: phony || cmake_object_order_depe
 build engine\CMakeFiles\engine.dir\src\EngineCore.cpp.obj: CXX_COMPILER__engine_unscanned_Debug D$:\Brayan\Projects\dark_shadows\engine\src\EngineCore.cpp || cmake_object_order_depends_target_engine
   DEFINES = -DBGFX_CONFIG_DEBUG_ANNOTATION=1 -DBGFX_CONFIG_MULTITHREADED=1 -DBX_CONFIG_DEBUG=1
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -I\include -ID:\Brayan\Projects\dark_shadows\engine\third_party\bgfx\bgfx\include -external:ID:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\include -external:W0
+  INCLUDES = -I\include -ID:\Brayan\Projects\dark_shadows\engine\third_party\flecs -ID:\Brayan\Projects\dark_shadows\engine\third_party\entt\src -ID:\Brayan\Projects\dark_shadows\engine\third_party\bgfx\bgfx\include -external:ID:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\include -external:W0
   OBJECT_DIR = engine\CMakeFiles\engine.dir
   OBJECT_FILE_DIR = engine\CMakeFiles\engine.dir\src
   TARGET_COMPILE_PDB = engine\CMakeFiles\engine.dir\engine.pdb
@@ -9928,7 +9928,7 @@ build cmake_object_order_depends_target_dark_shadows: phony || cmake_object_orde
 build game\CMakeFiles\dark_shadows.dir\game.cpp.obj: CXX_COMPILER__dark_shadows_unscanned_Debug D$:\Brayan\Projects\dark_shadows\game\game.cpp || cmake_object_order_depends_target_dark_shadows
   DEFINES = -DBGFX_CONFIG_DEBUG_ANNOTATION=1 -DBGFX_CONFIG_MULTITHREADED=1 -DBX_CONFIG_DEBUG=1
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -I\include -ID:\Brayan\Projects\dark_shadows\engine\third_party\bgfx\bgfx\include -external:ID:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\include -external:W0
+  INCLUDES = -I\include -ID:\Brayan\Projects\dark_shadows\engine\third_party\flecs -ID:\Brayan\Projects\dark_shadows\engine\third_party\entt\src -ID:\Brayan\Projects\dark_shadows\engine\third_party\bgfx\bgfx\include -external:ID:\Brayan\Projects\2dengine\libs\SDL2\cmake\..\include -external:W0
   OBJECT_DIR = game\CMakeFiles\dark_shadows.dir
   OBJECT_FILE_DIR = game\CMakeFiles\dark_shadows.dir
   TARGET_COMPILE_PDB = game\CMakeFiles\dark_shadows.dir\
