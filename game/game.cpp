@@ -2,29 +2,24 @@
 
 #include "../engine/src/EngineCore.h"
 
-using DSEngine::Engine;
+using DSEngine::DSEngineCore;
 
 int main() {
-
     auto Texture = new DSTexture();
     Texture->LoadFromFile("d:/test/texture.dst");
     const auto textureInfo = DSString::Format("Texture size %dx%d", Texture->GetWidth(), Texture->GetHeight());
     Debug::Log(textureInfo);
 
-
     Debug::Log("Game initialized.");
 
-    auto engine = new Engine();
+    auto DSEngine = new DSEngineCore();
 
     // Main game loop.
-    if (engine->Init("Dark Shadows",1280, 720)) {
-        while (engine->IsRunning()) {
-            Time::Update();
-
-            engine->Frame();
+    if (DSEngine->Init("Dark Shadows",1280, 720)) {
+        while (DSEngine->Run()) {
+            DSEngine->Frame(DSTime::GetDeltaTime());
         }
     }
-
 
     Debug::Log("Game execution finished.");
 

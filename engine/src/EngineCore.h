@@ -11,7 +11,7 @@
 #include "Quaternion.h"
 #include "Matrix4x4.h"
 #include "DSTexture.h"
-#include "Time.h"
+#include "DSTime.h"
 
 using DSEngine::DSString;
 using DSEngine::Debug;
@@ -21,15 +21,15 @@ using DSEngine::Vector4;
 using DSEngine::Quaternion;
 using DSEngine::Matrix4x4;
 using DSEngine::DSTexture;
-using DSEngine::Time;
+using DSEngine::DSTime;
 
 namespace DSEngine {
 
-    class Engine {
+    class DSEngineCore {
     public:
         bool Init(DSString title, int width, int height);
-        bool IsRunning();
-        void Frame();
+        bool Run();
+        void Frame(float deltaTime);
         int GetWidth();
         int GetHeight();
     private:

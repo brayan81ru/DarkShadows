@@ -1,7 +1,7 @@
 #include "EngineCore.h"
 
 namespace DSEngine {
-    bool Engine::Init(DSString title, int width, int height) {
+    bool DSEngineCore::Init(DSString title, int width, int height) {
         // SDL Init
         SDL_Init(SDL_INIT_VIDEO);
 
@@ -44,7 +44,7 @@ namespace DSEngine {
         return true;
     }
 
-    void Engine::ProcessEvents() {
+    void DSEngineCore::ProcessEvents() {
         while (SDL_PollEvent(&m_sdlEvent)) {
             if (m_sdlEvent.type == SDL_QUIT) {
                 m_isRunning = false;
@@ -52,7 +52,7 @@ namespace DSEngine {
         }
     }
 
-    void Engine::Frame() {
+    void DSEngineCore::Frame(float deltaTime) {
         // Set view 0 clear state.
         bgfx::setViewClear(0
             , BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH
@@ -68,16 +68,17 @@ namespace DSEngine {
         bgfx::frame();
     }
 
-    int Engine::GetWidth() {
+    int DSEngineCore::GetWidth() {
         return m_width;
     }
 
-    int Engine::GetHeight() {
+    int DSEngineCore::GetHeight() {
         return m_height;
     }
 
-    bool Engine::IsRunning() {
+    bool DSEngineCore::Run() {
         ProcessEvents();
+        DSTime::Update();
         return m_isRunning;
     }
 }

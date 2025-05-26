@@ -1,26 +1,26 @@
-﻿#include "Time.h"
+﻿#include "DSTime.h"
 #include <algorithm>
 
 namespace DSEngine {
     // Initialize static members
-    Time::TimePoint Time::s_StartTime;
-    Time::TimePoint Time::s_LastFrameTime;
-    Time::TimePoint Time::s_CurrentFrameTime;
-    float Time::s_DeltaTime = 0.0f;
-    float Time::s_SmoothDeltaTime = 0.0f;
-    uint64_t Time::s_FrameCount = 0;
-    bool Time::s_Paused = false;
-    float Time::s_FPSSamples[FPS_WINDOW_SIZE] = {0};
-    int Time::s_CurrentFPSSample = 0;
+    DSTime::TimePoint DSTime::s_StartTime;
+    DSTime::TimePoint DSTime::s_LastFrameTime;
+    DSTime::TimePoint DSTime::s_CurrentFrameTime;
+    float DSTime::s_DeltaTime = 0.0f;
+    float DSTime::s_SmoothDeltaTime = 0.0f;
+    uint64_t DSTime::s_FrameCount = 0;
+    bool DSTime::s_Paused = false;
+    float DSTime::s_FPSSamples[FPS_WINDOW_SIZE] = {0};
+    int DSTime::s_CurrentFPSSample = 0;
 
-    void Time::Init() {
+    void DSTime::Init() {
         s_StartTime = Clock::now();
         s_LastFrameTime = s_StartTime;
         s_CurrentFrameTime = s_StartTime;
         std::fill_n(s_FPSSamples, FPS_WINDOW_SIZE, 1.0f / 60.0f);
     }
 
-    void Time::Update() {
+    void DSTime::Update() {
         if (s_Paused) {
             s_DeltaTime = 0.0f;
             return;
@@ -47,24 +47,24 @@ namespace DSEngine {
         s_FrameCount++;
     }
 
-    float Time::GetTime() {
+    float DSTime::GetTime() {
         Duration timeSinceStart = s_CurrentFrameTime - s_StartTime;
         return timeSinceStart.count();
     }
 
-    float Time::GetDeltaTime() {
+    float DSTime::GetDeltaTime() {
         return s_Paused ? 0.0f : s_DeltaTime;
     }
 
-    float Time::GetSmoothDeltaTime() {
+    float DSTime::GetSmoothDeltaTime() {
         return s_Paused ? 0.0f : s_SmoothDeltaTime;
     }
 
-    uint64_t Time::GetFrameCount() {
+    uint64_t DSTime::GetFrameCount() {
         return s_FrameCount;
     }
 
-    float Time::GetFPS() {
+    float DSTime::GetFPS() {
         if (s_Paused) return 0.0f;
 
         float totalTime = 0.0f;
@@ -75,11 +75,11 @@ namespace DSEngine {
         return 1.0f / avgDelta;
     }
 
-    void Time::SetPaused(bool paused) {
+    void DSTime::SetPaused(bool paused) {
         s_Paused = paused;
     }
 
-    bool Time::IsPaused() {
+    bool DSTime::IsPaused() {
         return s_Paused;
     }
 }

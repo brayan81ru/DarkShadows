@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <chrono>
 namespace DSEngine {
-    class Time {
+    class DSTime {
     public:
         // Initializes the time system
         static void Init();
