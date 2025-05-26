@@ -32,4 +32,5 @@ namespace Mathf {
     FORCE_INLINE float Sin(float x) { return sinf(x); }
     FORCE_INLINE float Cos(float x) { return cosf(x); }
     FORCE_INLINE float Tan(float x) { return tanf(x); }
+
 }
