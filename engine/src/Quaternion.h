@@ -61,4 +61,5 @@ namespace DSEngine {
     };
 
     inline const Quaternion Quaternion::identity(0, 0, 0, 1);
+
 }
