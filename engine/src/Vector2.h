@@ -103,4 +103,5 @@ namespace DSEngine {
     inline const Vector2 Vector2::down(0, -1);
     inline const Vector2 Vector2::left(-1, 0);
     inline const Vector2 Vector2::right(1, 0);
+
 }
