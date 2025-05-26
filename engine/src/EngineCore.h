@@ -22,20 +22,21 @@ using DSEngine::Matrix4x4;
 using DSEngine::DSTexture;
 
 namespace DSEngine {
+
     class Engine {
-
     public:
-
         bool Init(DSString title, int width, int height);
-        void Run();
+        bool IsRunning();
+        void Frame();
         int GetWidth();
         int GetHeight();
     private:
+        void ProcessEvents();
         SDL_Window* m_window;
-
         int m_width, m_height;
-
         DSString m_title = "DSENGINE";
+        bool m_isRunning = true;
+        SDL_Event m_sdlEvent;
     };
 
 }

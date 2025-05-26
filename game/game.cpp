@@ -7,6 +7,8 @@ using DSEngine::Engine;
 int main() {
     float a = Mathf::Sqrt(12.0f);
 
+    auto vector = Vector3(1.f,2.f,3.f);
+
     auto pepe = Vector2::zero;
 
     pepe.x = 12.0f;
@@ -20,7 +22,6 @@ int main() {
     auto res = tex->SaveToFile("d:/test/texture.dst");
 
     const auto tex1 = new DSTexture();
-
     tex1->LoadFromFile("d:/test/texture.dst");
 
     const auto textureInfo = DSString::Format("Texture size %dx%d",tex1->GetWidth(),tex1->GetHeight());
@@ -29,8 +30,13 @@ int main() {
 
     Debug::Log("Engine initialized.");
 
-    if (Engine engine{}; engine.Init("Dark Shadows",1280, 720)) {
-        engine.Run();
+    auto engine = new Engine();
+
+    // Main game loop.
+    if (engine->Init("Dark Shadows",1280, 720)) {
+        while (engine->IsRunning()) {
+            engine->Frame();
+        }
     }
 
     Debug::Log("Engine execution finished.");

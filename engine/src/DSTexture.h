@@ -60,6 +60,8 @@ namespace DSEngine {
         // New compression-specific methods
         bool CompressToDXT(Format dxtFormat, CompressionQuality quality = CompressionQuality::NORMAL);
         bool IsDXTCompressed() const;
+        bool IsFormatCompressed(Format format);
+        bool Decompress();
 
     private:
 
@@ -103,6 +105,11 @@ namespace DSEngine {
         // DXT compression helpers
         bool CompressDXT1(MipLevel& source, MipLevel& dest, CompressionQuality quality);
         bool CompressDXT5(MipLevel& source, MipLevel& dest, CompressionQuality quality);
-        bool DecompressDXT(MipLevel& source, MipLevel& dest);
+        bool DecompressDXT();
+
+        // DXT decompression helpers
+        static void DecompressDXT1Block(const uint8_t* block, uint8_t* output, uint32_t outputStride);
+        static void DecompressDXT5Block(const uint8_t* block, uint8_t* output, uint32_t outputStride);
+        static uint32_t ConvertR5G6B5ToR8G8B8(uint16_t color);
     };
 }

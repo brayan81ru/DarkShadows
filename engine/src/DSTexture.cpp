@@ -12,10 +12,7 @@
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "../third_party/stb/stb_image_resize.h"
 
-
-
 namespace DSEngine {
-
     // Compression implementation using stb_dxt
     bool DSTexture::CompressToDXT(Format dxtFormat, CompressionQuality quality) {
         if (m_mipmaps.empty() || (dxtFormat != Format::DXT1 && dxtFormat != Format::DXT5)) {
@@ -163,6 +160,11 @@ namespace DSEngine {
 
     bool DSTexture::IsDXTCompressed() const {
         return m_format == Format::DXT1 || m_format == Format::DXT5;
+    }
+
+    // Update IsFormatCompressed helper
+    bool DSTexture::IsFormatCompressed(Format format) {
+        return format == Format::DXT1 || format == Format::DXT5;
     }
 
     DSTexture::DSTexture()
@@ -411,6 +413,173 @@ namespace DSEngine {
 
         stbi_image_free(data);
         return true;
+    }
+
+    // DXT Decompression Implementation
+    void DSTexture::DecompressDXT1Block(const uint8_t* block, uint8_t* output, uint32_t outputStride) {
+        // Extract color endpoints
+        uint16_t color0 = block[0] | (block[1] << 8);
+        uint16_t color1 = block[2] | (block[3] << 8);
+
+        // Convert endpoints to RGB
+        uint32_t colors[4];
+        colors[0] = ConvertR5G6B5ToR8G8B8(color0);
+        colors[1] = ConvertR5G6B5ToR8G8B8(color1);
+
+        // Calculate intermediate colors
+        if (color0 > color1) {
+            colors[2] = ((2 * colors[0]) + colors[1]) / 3;
+            colors[3] = ((2 * colors[1]) + colors[0]) / 3;
+        } else {
+            colors[2] = (colors[0] + colors[1]) / 2;
+            colors[3] = 0x00000000; // Transparent black
+        }
+
+        // Decode each pixel in the 4x4 block
+        for (int y = 0; y < 4; y++) {
+            uint8_t rowBits = block[4 + y];
+            for (int x = 0; x < 4; x++) {
+                uint8_t idx = (rowBits >> (2 * x)) & 0x03;
+                uint8_t* pixel = output + y * outputStride + x * 4;
+
+                *reinterpret_cast<uint32_t*>(pixel) = colors[idx];
+                if (idx == 3 && color0 <= color1) {
+                    pixel[3] = 0; // Fully transparent
+                } else {
+                    pixel[3] = 255; // Fully opaque
+                }
+            }
+        }
+    }
+
+    void DSTexture::DecompressDXT5Block(const uint8_t* block, uint8_t* output, uint32_t outputStride) {
+        // Decompress alpha channel (first 8 bytes)
+        uint8_t alpha0 = block[0];
+        uint8_t alpha1 = block[1];
+        const uint8_t* alphaBits = block + 2;
+        uint8_t alphaValues[8];
+
+        alphaValues[0] = alpha0;
+        alphaValues[1] = alpha1;
+
+        if (alpha0 > alpha1) {
+            alphaValues[2] = (6 * alpha0 + 1 * alpha1) / 7;
+            alphaValues[3] = (5 * alpha0 + 2 * alpha1) / 7;
+            alphaValues[4] = (4 * alpha0 + 3 * alpha1) / 7;
+            alphaValues[5] = (3 * alpha0 + 4 * alpha1) / 7;
+            alphaValues[6] = (2 * alpha0 + 5 * alpha1) / 7;
+            alphaValues[7] = (1 * alpha0 + 6 * alpha1) / 7;
+        } else {
+            alphaValues[2] = (4 * alpha0 + 1 * alpha1) / 5;
+            alphaValues[3] = (3 * alpha0 + 2 * alpha1) / 5;
+            alphaValues[4] = (2 * alpha0 + 3 * alpha1) / 5;
+            alphaValues[5] = (1 * alpha0 + 4 * alpha1) / 5;
+            alphaValues[6] = 0x00;
+            alphaValues[7] = 0xFF;
+        }
+
+        // Decompress color channel (last 8 bytes, same as DXT1)
+        uint8_t colorBlock[8];
+        memcpy(colorBlock, block + 8, 8);
+
+        // Temporary storage for color
+        uint8_t tempColor[4*4*4];
+        DecompressDXT1Block(colorBlock, tempColor, 16);
+
+        // Combine alpha and color channels
+        for (int y = 0; y < 4; y++) {
+            // Get alpha bits for this row
+            uint32_t alphaRow;
+            if (y < 2) {
+                alphaRow = alphaBits[0] | (alphaBits[1] << 8) | (alphaBits[2] << 16);
+                if (y == 1) alphaBits += 3;
+            } else {
+                alphaRow = alphaBits[0] | (alphaBits[1] << 8) | (alphaBits[2] << 16);
+                alphaBits += 3;
+            }
+
+            for (int x = 0; x < 4; x++) {
+                uint8_t alphaIdx = (alphaRow >> (3 * x)) & 0x07;
+                uint8_t alpha = alphaValues[alphaIdx];
+
+                uint8_t* srcPixel = tempColor + (y * 4 + x) * 4;
+                uint8_t* dstPixel = output + y * outputStride + x * 4;
+
+                dstPixel[0] = srcPixel[0];
+                dstPixel[1] = srcPixel[1];
+                dstPixel[2] = srcPixel[2];
+                dstPixel[3] = alpha;
+            }
+        }
+    }
+
+    bool DSTexture::Decompress() {
+
+        if (!IsFormatCompressed(m_format) || m_mipmaps.empty()) {
+            return false;
+        }
+
+        // Determine target format based on compression type
+        Format targetFormat = (m_format == Format::DXT1) ? Format::RGB8 : Format::RGBA8;
+
+        // Perform the decompression
+        if (!DecompressDXT()) {
+            return false;
+        }
+
+        m_format = targetFormat;
+        return true;
+    }
+
+    bool DSTexture::DecompressDXT() {
+        std::vector<MipLevel> decompressedMips;
+        decompressedMips.reserve(m_mipmaps.size());
+
+        for (const auto& mip : m_mipmaps) {
+            MipLevel newMip;
+            newMip.width = mip.width;
+            newMip.height = mip.height;
+
+            // Calculate decompressed size
+            size_t pixelSize = (m_format == Format::DXT1) ? 3 : 4;
+            size_t decompressedSize = mip.width * mip.height * pixelSize;
+            newMip.data.resize(decompressedSize);
+
+            uint32_t blocksWide = (mip.width + 3) / 4;
+            uint32_t blocksHigh = (mip.height + 3) / 4;
+            uint32_t blockSize = (m_format == Format::DXT1) ? 8 : 16;
+
+            for (uint32_t by = 0; by < blocksHigh; by++) {
+                for (uint32_t bx = 0; bx < blocksWide; bx++) {
+                    const uint8_t* block = mip.data.data() + (by * blocksWide + bx) * blockSize;
+                    uint8_t* output = newMip.data.data() + (by * 4 * mip.width + bx * 4) * pixelSize;
+
+                    if (m_format == Format::DXT1) {
+                        DecompressDXT1Block(block, output, mip.width * pixelSize);
+                    } else {
+                        DecompressDXT5Block(block, output, mip.width * pixelSize);
+                    }
+                }
+            }
+
+            decompressedMips.push_back(std::move(newMip));
+        }
+
+        m_mipmaps = std::move(decompressedMips);
+        return true;
+    }
+
+    uint32_t DSTexture::ConvertR5G6B5ToR8G8B8(uint16_t color) {
+        uint8_t r = (color >> 11) & 0x1F;
+        uint8_t g = (color >> 5) & 0x3F;
+        uint8_t b = color & 0x1F;
+
+        // Scale up to 8 bits
+        r = (r << 3) | (r >> 2);
+        g = (g << 2) | (g >> 4);
+        b = (b << 3) | (b >> 2);
+
+        return (r << 16) | (g << 8) | b;
     }
 
 }

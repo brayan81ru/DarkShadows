@@ -26,44 +26,46 @@ namespace DSEngine {
             return false;
         }
 
-#if defined(_WIN32)
+        #if defined(_WIN32)
         pd.nwh = wmi.info.win.window;
-#elif defined(__linux__)
+        #elif defined(__linux__)
         pd.ndt = wmi.info.x11.display;
         pd.nwh = (void*)(uintptr_t)wmi.info.x11.window;
-#endif
+        #endif
 
         bgfx::Init bgfxInit;
         bgfxInit.platformData = pd;
         bgfxInit.type = bgfx::RendererType::Vulkan;  // Or Direct3D11/OpenGL
         bgfx::init(bgfxInit);
 
+        m_isRunning = true;
+
         // Rest of initialization...
         return true;
     }
 
-    void Engine::Run() {
-        bool running = true;
-        while (running) {
-            SDL_Event event;
-            while (SDL_PollEvent(&event)) {
-                if (event.type == SDL_QUIT) running = false;
+    void Engine::ProcessEvents() {
+        while (SDL_PollEvent(&m_sdlEvent)) {
+            if (m_sdlEvent.type == SDL_QUIT) {
+                m_isRunning = false;
             }
-
-            // Set view 0 clear state.
-            bgfx::setViewClear(0
-                , BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH
-                , 0x303030ff
-                , 1.0f
-                , 0
-                );
-            // Set view 0 default viewport.
-            bgfx::setViewRect(0, 0, 0, uint16_t(m_width), uint16_t(m_height));
-
-            bgfx::touch(0);
-
-            bgfx::frame();
         }
+    }
+
+    void Engine::Frame() {
+        // Set view 0 clear state.
+        bgfx::setViewClear(0
+            , BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH
+            , 0x303030ff
+            , 1.0f
+            , 0
+            );
+        // Set view 0 default viewport.
+        bgfx::setViewRect(0, 0, 0, uint16_t(m_width), uint16_t(m_height));
+
+        bgfx::touch(0);
+
+        bgfx::frame();
     }
 
     int Engine::GetWidth() {
@@ -72,5 +74,10 @@ namespace DSEngine {
 
     int Engine::GetHeight() {
         return m_height;
+    }
+
+    bool Engine::IsRunning() {
+        ProcessEvents();
+        return m_isRunning;
     }
 }
