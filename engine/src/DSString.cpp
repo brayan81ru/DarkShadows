@@ -209,7 +209,6 @@ namespace DSEngine {
     }
 
     // Formatting
-    // In DSString.cpp replace the Format implementation with:
     DSString DSString::Format(const char* format, ...) {
         if (!format) return DSString();
 

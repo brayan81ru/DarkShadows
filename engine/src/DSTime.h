@@ -1,51 +1,61 @@
 ﻿#pragma once
 #include <chrono>
+#include <array>
 namespace DSEngine {
     class DSTime {
     public:
-        // Initializes the time system
         static void Init();
 
-        // Updates time calculations (call once per frame)
         static void Update();
 
-        // Time since game start in seconds
+        // Time in seconds
         static float GetTime();
 
-        // Time since last frame in seconds
+        // Delta time in seconds
         static float GetDeltaTime();
 
-        // Smooth averaged delta time over several frames
+        // Delta time in milliseconds
+        static float GetDeltaTimeMS();
+
+        // Smoothed delta time in seconds
         static float GetSmoothDeltaTime();
 
-        // Frame count since game start
+        // Smoothed delta time in milliseconds
+        static float GetSmoothDeltaTimeMS();
+
+        // Current frame time in milliseconds
+        static float GetFrameTimeMS();
+
+        // Smoothed frame time in milliseconds
+        static float GetSmoothFrameTimeMS();
+
+        // FPS calculations
+        static float GetFPS();
         static uint64_t GetFrameCount();
 
-        // Current FPS (smoothed)
-        static float GetFPS();
-
-        // Pause/unpause the time system
+        // Pause control
         static void SetPaused(bool paused);
         static bool IsPaused();
 
     private:
-        // High-resolution clock types
         using Clock = std::chrono::high_resolution_clock;
         using TimePoint = std::chrono::time_point<Clock>;
-        using Duration = std::chrono::duration<float>;
+        using Duration = std::chrono::duration<float, std::milli>; // Now using milliseconds as base
 
-        // Core timing variables
         static TimePoint s_StartTime;
         static TimePoint s_LastFrameTime;
         static TimePoint s_CurrentFrameTime;
-        static float s_DeltaTime;
-        static float s_SmoothDeltaTime;
+        static float s_DeltaTime;         // in seconds
+        static float s_DeltaTimeMS;       // in milliseconds
+        static float s_SmoothDeltaTime;   // in seconds
+        static float s_SmoothDeltaTimeMS; // in milliseconds
         static uint64_t s_FrameCount;
         static bool s_Paused;
 
-        // For FPS calculation
-        static constexpr int FPS_WINDOW_SIZE = 60;
-        static float s_FPSSamples[FPS_WINDOW_SIZE];
-        static int s_CurrentFPSSample;
+        // For frame time smoothing
+        static constexpr int FRAME_TIME_WINDOW = 60;
+        static std::array<float, FRAME_TIME_WINDOW> s_FrameTimeSamples;
+        static int s_CurrentSampleIndex;
+        static float s_SmoothedFrameTimeMS;
     };
 }

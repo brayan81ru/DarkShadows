@@ -1,7 +1,11 @@
-#include "EngineCore.h"
+#include "DSEngineCore.h"
 
 namespace DSEngine {
     bool DSEngineCore::Init(DSString title, int width, int height) {
+
+        // Init the DStime.
+        DSTime::Init();
+
         // SDL Init
         SDL_Init(SDL_INIT_VIDEO);
 
@@ -37,8 +41,11 @@ namespace DSEngine {
         bgfxInit.platformData = pd;
         bgfxInit.type = bgfx::RendererType::Vulkan;  // Or Direct3D11/OpenGL
         bgfx::init(bgfxInit);
+        bgfx::setDebug(BGFX_DEBUG_TEXT);
 
         m_isRunning = true;
+
+
 
         // Rest of initialization...
         return true;
@@ -60,10 +67,17 @@ namespace DSEngine {
             , 1.0f
             , 0
             );
+
         // Set view 0 default viewport.
         bgfx::setViewRect(0, 0, 0, uint16_t(m_width), uint16_t(m_height));
 
         bgfx::touch(0);
+
+        bgfx::dbgTextClear();
+
+        bgfx::dbgTextPrintf(1, 1, 0x0a, "FPS: %.2f",DSTime::GetFPS());
+
+        bgfx::dbgTextPrintf(1, 2, 0x0f, "Frame Time: %.2f ms", DSTime::GetFrameTimeMS());
 
         bgfx::frame();
     }

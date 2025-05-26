@@ -1,13 +1,13 @@
 #define SDL_MAIN_HANDLED
 
-#include "../engine/src/EngineCore.h"
+#include "../engine/src/DSEngineCore.h"
 
 using DSEngine::DSEngineCore;
 
 int main() {
     auto Texture = new DSTexture();
     Texture->LoadFromFile("d:/test/texture.dst");
-    const auto textureInfo = DSString::Format("Texture size %dx%d", Texture->GetWidth(), Texture->GetHeight());
+    const auto textureInfo = DSString::Format("Texture loaded size %dx%d", Texture->GetWidth(), Texture->GetHeight());
     Debug::Log(textureInfo);
 
     Debug::Log("Game initialized.");
@@ -17,6 +17,7 @@ int main() {
     // Main game loop.
     if (DSEngine->Init("Dark Shadows",1280, 720)) {
         while (DSEngine->Run()) {
+
             DSEngine->Frame(DSTime::GetDeltaTime());
         }
     }
