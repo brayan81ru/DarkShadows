@@ -10,6 +10,7 @@
 #include "Vector4.h"
 #include "Quaternion.h"
 #include "Matrix4x4.h"
+#include "DSTexture.h"
 
 using DSEngine::DSString;
 using DSEngine::Debug;
@@ -18,6 +19,7 @@ using DSEngine::Vector3;
 using DSEngine::Vector4;
 using DSEngine::Quaternion;
 using DSEngine::Matrix4x4;
+using DSEngine::DSTexture;
 
 namespace DSEngine {
     class Engine {
