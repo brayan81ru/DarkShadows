@@ -11,8 +11,18 @@ int main() {
     auto vector3 = Vector3::zero;
 
     // Convert PNG to DST
-    DSTexture* tex = DSTexture::CreateFromFile("d:/test/001.png");
-    //-tex->SaveToFile("d:/test/texture.dst");
+    const auto tex = DSTexture::CreateFromFile("d:/test/001.png");
+    tex->GenerateMipmaps();
+    auto res = tex->SaveToFile("d:/test/texture.dst");
+
+    const auto tex1 = new DSTexture();
+
+    tex1->LoadFromFile("d:/test/texture.dst");
+
+    const auto textureInfo = DSString::Format("Texture size %dx%d",tex1->GetWidth(),tex1->GetHeight());
+
+    Debug::Log(textureInfo);
+
 
 
     Debug::Log("Engine initialized.");
