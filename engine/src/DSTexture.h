@@ -2,17 +2,29 @@
 #include <vector>
 #include <string>
 #include <cstdint>
+#include <memory>
+
+// stb_dxt configuration
+#define STB_DXT_IMPLEMENTATION
+#define STB_DXT_STATIC
+#include "../third_party/stb/stb_dxt.h"
+
 namespace DSEngine {
     class DSTexture {
     public:
-        // Texture formats
+        // Texture formats (simplified for DXT)
         enum class Format {
             UNKNOWN = 0,
-            R8,
-            RG8,
-            RGB8,
-            RGBA8,
-            // Add more formats as needed
+            RGB8,    // Uncompressed 24-bit
+            RGBA8,   // Uncompressed 32-bit
+            DXT1,    // BC1 - RGB with 1-bit alpha
+            DXT5,    // BC3 - RGBA with full alpha
+        };
+
+        // Compression quality levels (simplified for stb_dxt)
+        enum class CompressionQuality {
+            FAST,    // Uses stb_dxt fast compression
+            NORMAL   // Uses stb_dxt high-quality compression
         };
 
         // Construction/destruction
@@ -45,7 +57,13 @@ namespace DSEngine {
         static uint32_t GetChannelCount(Format format);
         static size_t GetPixelSize(Format format);
 
+        // New compression-specific methods
+        bool CompressToDXT(Format dxtFormat, CompressionQuality quality = CompressionQuality::NORMAL);
+        bool IsDXTCompressed() const;
+
     private:
+
+
         struct MipLevel {
             uint32_t width;
             uint32_t height;
@@ -53,7 +71,8 @@ namespace DSEngine {
         };
 
         // DST file format structures
-#pragma pack(push, 1)
+
+        #pragma pack(push, 1)
         struct DSTHeader {
             char magic[4] = {'D', 'S', 'T', '\0'}; // "DST\0"
             uint16_t version = 1;                   // Format version
@@ -70,7 +89,7 @@ namespace DSEngine {
             uint32_t dataSize;
             uint32_t dataOffset;
         };
-#pragma pack(pop)
+        #pragma pack(pop)
 
         // Texture data
         Format m_format;
@@ -80,5 +99,10 @@ namespace DSEngine {
         // Private methods
         bool ValidateMipLevel(uint32_t level) const;
         bool LoadFromSTB(const std::string& path, bool flipVertically);
+
+        // DXT compression helpers
+        bool CompressDXT1(MipLevel& source, MipLevel& dest, CompressionQuality quality);
+        bool CompressDXT5(MipLevel& source, MipLevel& dest, CompressionQuality quality);
+        bool DecompressDXT(MipLevel& source, MipLevel& dest);
     };
 }

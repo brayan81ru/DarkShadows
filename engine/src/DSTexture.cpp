@@ -12,7 +12,159 @@
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "../third_party/stb/stb_image_resize.h"
 
+
+
 namespace DSEngine {
+
+    // Compression implementation using stb_dxt
+    bool DSTexture::CompressToDXT(Format dxtFormat, CompressionQuality quality) {
+        if (m_mipmaps.empty() || (dxtFormat != Format::DXT1 && dxtFormat != Format::DXT5)) {
+            return false;
+        }
+
+        // If already in target format, return success
+        if (m_format == dxtFormat) {
+            return true;
+        }
+
+        // Must be RGBA8 to compress to DXT
+        if (m_format != Format::RGBA8) {
+            // Convert to RGBA8 first
+            //if (!ConvertFormat(Format::RGBA8)) {
+            //    return false;
+            //}
+            return false;
+        }
+
+        std::vector<MipLevel> compressedMips;
+        compressedMips.reserve(m_mipmaps.size());
+
+        for (MipLevel &mip : m_mipmaps) {
+            MipLevel newMip;
+            newMip.width = mip.width;
+            newMip.height = mip.height;
+
+            // Calculate compressed size (4x4 blocks)
+            uint32_t blocksWide = (mip.width + 3) / 4;
+            uint32_t blocksHigh = (mip.height + 3) / 4;
+            size_t compressedSize = blocksWide * blocksHigh * (dxtFormat == Format::DXT1 ? 8 : 16);
+            newMip.data.resize(compressedSize);
+
+            // Compress using appropriate method
+            bool success = false;
+            switch (dxtFormat) {
+                case Format::DXT1:
+                    success = CompressDXT1(mip, newMip, quality);
+                    break;
+                case Format::DXT5:
+                    success = CompressDXT5(mip, newMip, quality);
+                    break;
+                default:
+                    return false;
+            }
+
+            if (!success) return false;
+            compressedMips.push_back(std::move(newMip));
+        }
+
+        m_mipmaps = std::move(compressedMips);
+        m_format = dxtFormat;
+        return true;
+    }
+
+    bool DSTexture::CompressDXT1(MipLevel& source, MipLevel& dest, CompressionQuality quality) {
+        const int alpha = 1; // STB_DXT flag for DXT1 with alpha
+        const int mode = (quality == CompressionQuality::FAST) ? STB_DXT_NORMAL : STB_DXT_HIGHQUAL;
+
+        stb_compress_dxt_block(
+            dest.data.data(),
+            source.data.data(),
+            alpha,
+            mode
+        );
+
+        // Process all 4x4 blocks
+        uint32_t blocksWide = (source.width + 3) / 4;
+        uint32_t blocksHigh = (source.height + 3) / 4;
+
+        for (uint32_t by = 0; by < blocksHigh; by++) {
+            for (uint32_t bx = 0; bx < blocksWide; bx++) {
+                uint8_t blockPixels[4*4*4];
+
+                // Extract 4x4 RGBA block (with edge padding)
+                for (int y = 0; y < 4; y++) {
+                    for (int x = 0; x < 4; x++) {
+                        int sx = bx*4 + x;
+                        int sy = by*4 + y;
+
+                        // Clamp to texture dimensions
+                        sx = std::min(sx, (int)source.width-1);
+                        sy = std::min(sy, (int)source.height-1);
+
+                        const uint8_t* src = source.data.data() + (sy * source.width + sx) * 4;
+                        uint8_t* dst = blockPixels + (y*4 + x) * 4;
+
+                        dst[0] = src[0];
+                        dst[1] = src[1];
+                        dst[2] = src[2];
+                        dst[3] = src[3];
+                    }
+                }
+
+                // Compress the block
+                uint8_t* output = dest.data.data() + (by * blocksWide + bx) * 8;
+                stb_compress_dxt_block(output, blockPixels, alpha, mode);
+            }
+        }
+
+        return true;
+    }
+
+    bool DSTexture::CompressDXT5(MipLevel& source, MipLevel& dest, CompressionQuality quality) {
+        const int mode = (quality == CompressionQuality::FAST) ? STB_DXT_NORMAL : STB_DXT_HIGHQUAL;
+
+        // Process all 4x4 blocks
+        uint32_t blocksWide = (source.width + 3) / 4;
+        uint32_t blocksHigh = (source.height + 3) / 4;
+
+        for (uint32_t by = 0; by < blocksHigh; by++) {
+            for (uint32_t bx = 0; bx < blocksWide; bx++) {
+                uint8_t blockPixels[4*4*4];
+
+                // Extract 4x4 RGBA block (with edge padding)
+                for (int y = 0; y < 4; y++) {
+                    for (int x = 0; x < 4; x++) {
+                        int sx = bx*4 + x;
+                        int sy = by*4 + y;
+
+                        // Clamp to texture dimensions
+                        sx = std::min(sx, (int)source.width-1);
+                        sy = std::min(sy, (int)source.height-1);
+
+                        const uint8_t* src = source.data.data() + (sy * source.width + sx) * 4;
+                        uint8_t* dst = blockPixels + (y*4 + x) * 4;
+
+                        dst[0] = src[0];
+                        dst[1] = src[1];
+                        dst[2] = src[2];
+                        dst[3] = src[3];
+                    }
+                }
+
+                // Compress the block (DXT5 is two DXT blocks: alpha + color)
+                uint8_t* output = dest.data.data() + (by * blocksWide + bx) * 16;
+                stb_compress_dxt_block(output, blockPixels, 0, mode); // Alpha block
+                stb_compress_dxt_block(output+8, blockPixels, 0, mode); // Color block
+            }
+        }
+
+        return true;
+    }
+
+    bool DSTexture::IsDXTCompressed() const {
+        return m_format == Format::DXT1 || m_format == Format::DXT5;
+    }
+
     DSTexture::DSTexture()
         : m_format(Format::UNKNOWN), m_flags(0) {}
 
@@ -70,6 +222,11 @@ namespace DSEngine {
         header.height = GetHeight();
         header.format = static_cast<uint16_t>(m_format);
         header.mipLevels = GetMipLevels();
+
+        // Add compression flag if needed
+        if (IsDXTCompressed()) {
+            header.flags |= 0x1; // Set compression flag
+        }
 
         // Write header
         file.write(reinterpret_cast<const char*>(&header), sizeof(DSTHeader));
@@ -209,8 +366,6 @@ namespace DSEngine {
     // Static format helpers
     uint32_t DSTexture::GetChannelCount(Format format) {
         switch (format) {
-            case Format::R8: return 1;
-            case Format::RG8: return 2;
             case Format::RGB8: return 3;
             case Format::RGBA8: return 4;
             default: return 0;
@@ -219,8 +374,6 @@ namespace DSEngine {
 
     size_t DSTexture::GetPixelSize(Format format) {
         switch (format) {
-            case Format::R8: return 1;
-            case Format::RG8: return 2;
             case Format::RGB8: return 3;
             case Format::RGBA8: return 4;
             default: return 0;
@@ -241,8 +394,6 @@ namespace DSEngine {
 
         // Determine format
         switch (channels) {
-            case 1: m_format = Format::R8; break;
-            case 2: m_format = Format::RG8; break;
             case 3: m_format = Format::RGB8; break;
             case 4: m_format = Format::RGBA8; break;
             default:
