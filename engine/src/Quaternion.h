@@ -1,6 +1,6 @@
 #pragma once
 #include "vector3.h"
-#include "ds_math.h"
+#include "DSMath.h"
 
 
 namespace DSEngine {

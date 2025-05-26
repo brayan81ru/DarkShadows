@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ds_math.h"
+#include "DSMath.h"
 
 namespace DSEngine {
     ALIGNED_(16) struct Vector2 {
