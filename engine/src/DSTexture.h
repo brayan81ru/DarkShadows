@@ -3,28 +3,28 @@
 #include <string>
 #include <cstdint>
 #include <memory>
+#include <algorithm>
 
 // stb_dxt configuration
 #define STB_DXT_IMPLEMENTATION
 #define STB_DXT_STATIC
 #include "../third_party/stb/stb_dxt.h"
-
 namespace DSEngine {
     class DSTexture {
     public:
-        // Texture formats (simplified for DXT)
+        // Texture formats
         enum class Format {
             UNKNOWN = 0,
-            RGB8,    // Uncompressed 24-bit
-            RGBA8,   // Uncompressed 32-bit
-            DXT1,    // BC1 - RGB with 1-bit alpha
-            DXT5,    // BC3 - RGBA with full alpha
+            RGB8,    // 24-bit uncompressed
+            RGBA8,   // 32-bit uncompressed
+            DXT1,    // BC1 compressed (RGB with 1-bit alpha)
+            DXT5     // BC3 compressed (RGBA with full alpha)
         };
 
-        // Compression quality levels (simplified for stb_dxt)
+        // Compression quality levels
         enum class CompressionQuality {
-            FAST,    // Uses stb_dxt fast compression
-            NORMAL   // Uses stb_dxt high-quality compression
+            FAST,    // stb_dxt fast compression
+            NORMAL   // stb_dxt high quality compression
         };
 
         // Construction/destruction
@@ -32,16 +32,21 @@ namespace DSEngine {
         ~DSTexture();
 
         // Creation methods
-        static DSTexture* CreateFromFile(const std::string& path, bool flipVertically = true);
-        static DSTexture* CreateEmpty(uint32_t width, uint32_t height, Format format);
-        static DSTexture* CreateFromMemory(const uint8_t* data, uint32_t width, uint32_t height, Format format);
+        static std::unique_ptr<DSTexture> CreateFromFile(const std::string& path, bool flipVertically = true);
+        static std::unique_ptr<DSTexture> CreateEmpty(uint32_t width, uint32_t height, Format format);
+        static std::unique_ptr<DSTexture> CreateFromMemory(const uint8_t* data, uint32_t width, uint32_t height, Format format);
+
+        // Compression methods
+        bool Compress(Format targetFormat, CompressionQuality quality = CompressionQuality::NORMAL);
+        bool Decompress();
+        bool IsCompressed() const;
 
         // Save/Load operations
         bool SaveToFile(const std::string& path) const;
         bool LoadFromFile(const std::string& path);
 
         // Mipmap operations
-        bool GenerateMipmaps();
+        bool GenerateMipmaps(CompressionQuality quality = CompressionQuality::NORMAL);
         bool SetMipLevel(uint32_t level, const void* data, size_t size);
         bool RemoveMipmaps();
 
@@ -53,19 +58,14 @@ namespace DSEngine {
         const uint8_t* GetPixels(uint32_t mipLevel = 0) const;
         size_t GetPixelDataSize(uint32_t mipLevel = 0) const;
 
-        // Format conversion
+        // Format helpers
         static uint32_t GetChannelCount(Format format);
         static size_t GetPixelSize(Format format);
-
-        // New compression-specific methods
-        bool CompressToDXT(Format dxtFormat, CompressionQuality quality = CompressionQuality::NORMAL);
-        bool IsDXTCompressed() const;
-        bool IsFormatCompressed(Format format);
-        bool Decompress();
+        static size_t GetBlockSize(Format format);
+        static bool IsFormatCompressed(Format format);
+        static uint32_t CalculateMipSize(uint32_t width, uint32_t height, Format format);
 
     private:
-
-
         struct MipLevel {
             uint32_t width;
             uint32_t height;
@@ -73,16 +73,15 @@ namespace DSEngine {
         };
 
         // DST file format structures
-
-        #pragma pack(push, 1)
+#pragma pack(push, 1)
         struct DSTHeader {
-            char magic[4] = {'D', 'S', 'T', '\0'}; // "DST\0"
-            uint16_t version = 1;                   // Format version
-            uint16_t format;                        // Format enum value
-            uint32_t width;                         // Base width
-            uint32_t height;                        // Base height
-            uint32_t mipLevels;                     // Number of mipmaps
-            uint32_t flags = 0;                     // Additional flags
+            char magic[4] = {'D', 'S', 'T', '\0'};
+            uint16_t version = 2;  // Version 2 adds compression support
+            uint16_t format;
+            uint32_t width;
+            uint32_t height;
+            uint32_t mipLevels;
+            uint32_t flags = 0;
         };
 
         struct DSTMipInfo {
@@ -91,7 +90,7 @@ namespace DSEngine {
             uint32_t dataSize;
             uint32_t dataOffset;
         };
-        #pragma pack(pop)
+#pragma pack(pop)
 
         // Texture data
         Format m_format;
@@ -101,15 +100,16 @@ namespace DSEngine {
         // Private methods
         bool ValidateMipLevel(uint32_t level) const;
         bool LoadFromSTB(const std::string& path, bool flipVertically);
+        bool ConvertFormat(Format newFormat);
+        bool ConvertFromRGB8(const MipLevel& source, MipLevel& dest, Format newFormat);
+        bool ConvertFromRGBA8(const MipLevel& source, MipLevel& dest, Format newFormat);
 
-        // DXT compression helpers
+        // DXT compression/decompression
         bool CompressDXT1(MipLevel& source, MipLevel& dest, CompressionQuality quality);
         bool CompressDXT5(MipLevel& source, MipLevel& dest, CompressionQuality quality);
         bool DecompressDXT();
-
-        // DXT decompression helpers
-        static void DecompressDXT1Block(const uint8_t* block, uint8_t* output, uint32_t outputStride);
-        static void DecompressDXT5Block(const uint8_t* block, uint8_t* output, uint32_t outputStride);
-        static uint32_t ConvertR5G6B5ToR8G8B8(uint16_t color);
+        void DecompressDXT1Block(const uint8_t* block, uint8_t* output, uint32_t outputStride);
+        void DecompressDXT5Block(const uint8_t* block, uint8_t* output, uint32_t outputStride);
+        uint32_t ConvertR5G6B5ToR8G8B8(uint16_t color);
     };
 }

@@ -18,11 +18,14 @@ int main() {
     // Convert PNG to DST
     const auto tex = DSTexture::CreateFromFile("d:/test/001.png");
     tex->GenerateMipmaps();
-    tex->CompressToDXT(DSTexture::Format::DXT5);
+    tex->Compress(DSTexture::Format::DXT5);
     auto res = tex->SaveToFile("d:/test/texture.dst");
 
-    const auto tex1 = new DSTexture();
+    auto tex1 = new DSTexture();
+
     tex1->LoadFromFile("d:/test/texture.dst");
+
+    bool compressed = tex1->IsCompressed();
 
     const auto textureInfo = DSString::Format("Texture size %dx%d",tex1->GetWidth(),tex1->GetHeight());
 
