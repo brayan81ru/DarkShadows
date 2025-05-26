@@ -1,6 +1,7 @@
 # Engine sources
 file(GLOB ENGINE_SOURCES src/*.cpp src/*.h)
-add_library(engine STATIC ${ENGINE_SOURCES})
+add_library(engine STATIC ${ENGINE_SOURCES}
+        src/TestClass.h)
 
 #SDL2 configuration
 target_include_directories(engine PUBLIC ${SDL_INCLUDE_DIR})
