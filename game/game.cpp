@@ -5,7 +5,6 @@
 using DSEngine::Engine;
 
 int main() {
-
     float a = Mathf::Sqrt(12.0f);
 
     auto pepe = Vector2::zero;
