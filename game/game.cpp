@@ -19,6 +19,8 @@ int main() {
     // Main game loop.
     if (engine->Init("Dark Shadows",1280, 720)) {
         while (engine->IsRunning()) {
+            Time::Update();
+
             engine->Frame();
         }
     }
