@@ -12,6 +12,8 @@
 #include "Matrix4x4.h"
 #include "DSTexture.h"
 #include "DSTime.h"
+#include "DSBaseRenderer.h"
+#include "DSVulkanRenderer.h"
 
 using DSEngine::DSString;
 using DSEngine::Debug;
@@ -22,11 +24,14 @@ using DSEngine::Quaternion;
 using DSEngine::Matrix4x4;
 using DSEngine::DSTexture;
 using DSEngine::DSTime;
+using DSEngine::DSBaseRenderer;
+using DSEngine::DSVulkanRenderer;
 
 namespace DSEngine {
 
     class DSEngineCore {
     public:
+        bool InitOld(DSString title, int width, int height);
         bool Init(DSString title, int width, int height);
         bool Run();
         void Frame(float deltaTime);
@@ -34,6 +39,9 @@ namespace DSEngine {
         int GetHeight();
     private:
         void ProcessEvents();
+
+        void FrameOld(float deltaTime);
+
         SDL_Window* m_window;
         int m_width, m_height;
         DSString m_title = "DSENGINE";

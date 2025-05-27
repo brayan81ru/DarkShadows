@@ -1,7 +1,7 @@
 #include "DSEngineCore.h"
 
 namespace DSEngine {
-    bool DSEngineCore::Init(DSString title, int width, int height) {
+    bool DSEngineCore::InitOld(DSString title, int width, int height) {
 
         // Init the DStime.
         DSTime::Init();
@@ -51,6 +51,42 @@ namespace DSEngine {
         return true;
     }
 
+    bool DSEngineCore::Init(DSString title, int width, int height) {
+
+        // Init the DStime.
+        DSTime::Init();
+
+        // SDL Init
+        SDL_Init(SDL_INIT_VIDEO);
+
+        m_title = title;
+
+        m_width = width;
+
+        m_height = height;
+
+        m_window = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, SDL_WINDOW_SHOWN);
+
+        // Initialize renderer
+        RendererConfig config = {};
+        config.nativeWindowHandle = m_window;
+        config.width = 1280;
+        config.height = 720;
+        config.enableValidationLayers = true;
+
+        std::unique_ptr<DSBaseRenderer> renderer = std::make_unique<DSVulkanRenderer>();
+        if (!renderer->Init(config)) {
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Renderer init failed!", m_window);
+
+            return false;
+        }
+
+        m_isRunning = true;
+
+        // Rest of initialization...
+        return true;
+    }
+
     void DSEngineCore::ProcessEvents() {
         while (SDL_PollEvent(&m_sdlEvent)) {
             if (m_sdlEvent.type == SDL_QUIT) {
@@ -59,7 +95,7 @@ namespace DSEngine {
         }
     }
 
-    void DSEngineCore::Frame(float deltaTime) {
+    void DSEngineCore::FrameOld(float deltaTime) {
         // Set view 0 clear state.
         bgfx::setViewClear(0
             , BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH
@@ -80,6 +116,10 @@ namespace DSEngine {
         bgfx::dbgTextPrintf(1, 2, 0x0f, "Frame Time: %.2f ms", DSTime::GetFrameTimeMS());
 
         bgfx::frame();
+    }
+
+    void DSEngineCore::Frame(float deltaTime) {
+
     }
 
     int DSEngineCore::GetWidth() {

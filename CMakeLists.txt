@@ -9,8 +9,6 @@ set(SDL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/engine/third_party/SDL2-2.32.6")
 set(SDL_INCLUDE_DIR "${SDL_PATH}/include")
 set(SDL_LIB_DIR "${SDL_PATH}/lib/x64")
 
-
-
 add_subdirectory(engine)
 
 add_subdirectory(game)
